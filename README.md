@@ -11,7 +11,7 @@ Download zip file (~2GB) from https://drive.google.com/file/d/1wXOgwM_rrEYJfelzu
 
 **General Note**: `models.py` is where all the model structures have been defined. `train.py` loads data, trains models, logs trajectories and saves checkpoints. `eval_cls.py` and `eval_seg.py` contain script to evaluate model accuracy and visualize segmentation result. Feel free to modify any file as needed.
 
-The following PointNet architecture is used as the base model for both these models:
+The following PointNet architecture (without the feature transform) is used as the base network for both these models:
 
 ![image](https://github.com/Shyam-pi/Point-Cloud-Classification-and-Segmentation/assets/57116285/94218436-a3c1-436a-9032-732221301ed4)
 
