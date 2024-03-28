@@ -4,7 +4,7 @@
 
 **Goals**: In this project we implement a PointNet based architecture for classification and segmentation with point clouds, sections 1 and 2 focus on implementing, training and testing models. Section 3 is about quantitatively analyzing the model's robustness.
 
-**Results**: All the results and inferences from this project can be found in this webpage : https://shyam-pi.github.io/Single-Image-to-3D-with-3D-Ground-Truth/ 
+**Results**: All the results and inferences from this project can be found in this webpage : https://shyam-pi.github.io/Point-Cloud-Classification-and-Segmentation/ 
 
 ## Data Preparation
 Download zip file (~2GB) from https://drive.google.com/file/d/1wXOgwM_rrEYJfelzuuCkRfMmR0J7vLq_/view?usp=sharing. Put the unzipped `data` folder under root directory. There are two folders (`cls` and `seg`) corresponding to two tasks, each of which contains `.npy` files for training and testing.
