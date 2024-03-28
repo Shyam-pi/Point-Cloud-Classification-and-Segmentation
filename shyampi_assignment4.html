@@ -1,0 +1,220 @@
+                    <meta charset="utf-8" emacsmode="-*- markdown -*">
+                            **CMSC848F Assignment 4**
+
+**Name    : Shyamsundar Prabhakar Indra**
+
+**UID     : 119360842**
+
+**Dir. ID : shyampi**
+
+This page documents the results corresponding to Assignment 4 of CMSC848F - 3D Vision, Fall 2023, at the University of Maryland.
+
+The tasks can be found at https://github.com/848f-3DVision/assignment4
+
+Classification Model
+==============================================================
+
+Test Accuracy
+--------------------------------------------------------------
+
+The test accuracy of the classification model on the unmodified test dataset = 0.9538
+
+Output Visualization
+--------------------------------------------------------------
+
+Successful predictions:
+
+![Ground Truth Class = 0; Predicted Class = 0](output/cls/class_wrong_right_preds/success_idx_0_gt_0_pred_0.gif) ![Ground Truth Class = 1; Predicted Class = 1](output\cls\class_wrong_right_preds\success_idx_691_gt_1_pred_1.gif) ![Ground Truth Class = 2 ; Predicted Class = 2](output\cls\class_wrong_right_preds\success_idx_736_gt_2_pred_2.gif)
+
+
+Wrong predictions:
+
+![Ground Truth Class = 0; Predicted Class = 2](output\cls\class_wrong_right_preds\wrong_idx_445_with_gt_0_pred_2.gif) ![Ground Truth Class = 1; Predicted Class = 2](output\cls\class_wrong_right_preds\wrong_idx_646_with_gt_1_pred_2.gif) ![Ground Truth Class = 2 ; Predicted Class = 1](output\cls\class_wrong_right_preds\wrong_idx_726_with_gt_2_pred_1.gif)
+
+Interpretation
+--------------------------------------------------------------
+
+The model is pretty robust in general which is apparent from the high accuracy of 0.9538 on the test dataset which consists of pointclouds that the model has never seen before!
+When we have a look at the 3 instances where the model predicted wrongly, it is usually caused by an ambiguous shape of the instances. For example, the lamp in the 3rd wrong prediction might look very similar to any of the vase in its training dataset and hence it has predicted it wrong.
+
+Segmentation Model
+==============================================================
+
+Test Accuracy
+--------------------------------------------------------------
+
+The test accuracy of the segmentation model on the unmodified test dataset = 0.8910
+
+Output Visualization
+--------------------------------------------------------------
+
+Good predictions -> Instances with prediction accuracy above 0.9
+
+Bad predictions -> Instances with prediction accuracy below 0.6
+
+Good predictions:
+
+Instance #1
+
+![Ground Truth Segmentation](output\seg\above_below_thresh_preds\above_thresh_seg_gt_idx_1.gif) ![Prediction; Accuracy = 0.984](output\seg\above_below_thresh_preds\above_thresh_seg_pred_idx_1_acc_0.984.gif)
+
+Instance #2
+
+![Ground Truth Segmentation](output\seg\above_below_thresh_preds\above_thresh_seg_gt_idx_5.gif) ![Prediction; Accuracy = 0.956](output\seg\above_below_thresh_preds\above_thresh_seg_pred_idx_5_acc_0.956.gif)
+
+Instance #3
+
+![Ground Truth Segmentation](output\seg\above_below_thresh_preds\above_thresh_seg_gt_idx_6.gif) ![Prediction; Accuracy = 0.977](output\seg\above_below_thresh_preds\above_thresh_seg_pred_idx_6_acc_0.977.gif)
+
+
+Bad predictions:
+
+Instance #1
+
+![Ground Truth Segmentation](output\seg\above_below_thresh_preds\below_thresh_seg_gt_idx_26.gif) ![Prediction; Accuracy = 0.545](output\seg\above_below_thresh_preds\below_thresh_seg_pred_idx_26_acc_0.545.gif)
+
+Instance #2
+
+![Ground Truth Segmentation](output\seg\above_below_thresh_preds\below_thresh_seg_gt_idx_96.gif) ![Prediction; Accuracy = 0.541](output\seg\above_below_thresh_preds\below_thresh_seg_pred_idx_96_acc_0.541.gif)
+
+Instance #3
+
+![Ground Truth Segmentation](output\seg\above_below_thresh_preds\below_thresh_seg_gt_idx_163.gif) ![Prediction; Accuracy = 0.464](output\seg\above_below_thresh_preds\below_thresh_seg_pred_idx_163_acc_0.464.gif)
+
+Interpretation
+--------------------------------------------------------------
+
+Just like the classification model, the segmentation model is also pretty robust in its task, which can be inferred from the test accuracy of 0.8910. However this is possible only because all the pointclouds have the same canonical orientation as all the pointclouds in the training set.
+When we look at the failure cases, it is apparent that the model fails when there is any sort of asymmetry or unconventional shape of the sofa. For instance in the 3rd case of failure, it's a point cloud representing a chair and a coffee table, which confuses the model since it has been trained on
+data with just a single chair. This results in a bad prediction.
+
+
+Robustness Analysis
+==============================================================
+
+Baselines
+--------------------------------------------------------------
+
+The following two chairs will be used as the baseline instances to evaluate the robustness of the classification and segmentation models to changes in the test data.
+
+![Chair #1](output\seg\ablation_study\seg_gt_idx_100_numpts_10000.gif) ![Chair #2](output\seg\ablation_study\seg_gt_idx_50_numpts_10000.gif)
+
+Original segmentation accuracy of chair #1 = 0.945
+
+Original segmentation accuracy of chair #2 = 0.925
+
+Rotation of the pointclouds
+--------------------------------------------------------------
+
+**Rotation by 45 degrees**:
+
+Overall Test accuracy for classification = 0.6212
+
+Overall Test accuracy for segmentation = 0.6622
+
+Chair # 1
+
+Classification : GT = 0, Prediction = 1
+
+Segmentation accuracy = 0.7316
+
+![Chair #1 GT](output\seg\ablation_study\seg_gt_idx_100_numpts_10000_rotated_by_45_degrees.gif) ![Chair #1 Prediction](output\seg\ablation_study\seg_pred_idx_100_numpts_10000_rotated_by_45_degrees_acc_0.73165.gif)
+
+Chair # 2
+
+Classification : GT = 0, Prediction = 0
+
+Segmentation accuracy = 0.7378
+
+![Chair #2 GT](output\seg\ablation_study\seg_gt_idx_50_numpts_10000_rotated_by_45_degrees.gif) ![Chair #2 Prediction](output\seg\ablation_study\seg_pred_idx_50_numpts_10000_rotated_by_45_degrees_acc_0.7378.gif)
+
+
+**Rotation by 90 degrees**:
+
+Overall Test accuracy for classification = 0.2329
+
+Overall Test accuracy for segmentation = 0.3293
+
+Chair # 1
+
+Classification : GT = 0, Prediction = 1
+
+Segmentation accuracy = 0.3384
+
+![Chair #1 GT](output\seg\ablation_study\seg_gt_idx_100_numpts_10000_rotated_by_90_degrees.gif) ![Chair #1 Prediction](output\seg\ablation_study\seg_pred_idx_100_numpts_10000_rotated_by_90_degrees_acc_0.3384.gif)
+
+Chair # 2
+
+Classification : GT = 0, Prediction = 2
+
+Segmentation accuracy = 0.3378
+
+![Chair #2 GT](output\seg\ablation_study\seg_gt_idx_50_numpts_10000_rotated_by_90_degrees.gif) ![Chair #2 Prediction](output\seg\ablation_study\seg_pred_idx_50_numpts_10000_rotated_by_90_degrees_acc_0.3378.gif)
+
+
+Variation of Number of Points
+--------------------------------------------------------------
+
+**Number of points = 1000**:
+
+Overall Test accuracy for classification = 0.9496
+
+Overall Test accuracy for segmentation = 0.8868
+
+Chair # 1
+
+Classification : GT = 0, Prediction = 0
+
+Segmentation accuracy = 0.935
+
+![Chair #1 GT](output\seg\ablation_study\seg_gt_idx_100_numpts_1000.gif) ![Chair #1 Prediction](output\seg\ablation_study\seg_pred_idx_100_numpts_1000_acc_0.935.gif)
+
+Chair # 2
+
+Classification : GT = 0, Prediction = 0
+
+Segmentation accuracy = 0.926
+
+![Chair #2 GT](output\seg\ablation_study\seg_gt_idx_50_numpts_1000.gif) ![Chair #2 Prediction](output\seg\ablation_study\seg_pred_idx_50_numpts_1000_acc_0.926.gif)
+
+
+**Number of points = 100**:
+
+Overall Test accuracy for classification = 0.9265
+
+Overall Test accuracy for segmentation = 0.8109
+
+Chair # 1
+
+Classification : GT = 0, Prediction = 0
+
+Segmentation accuracy = 0.94
+
+![Chair #1 GT](output\seg\ablation_study\seg_gt_idx_100_numpts_100.gif) ![Chair #1 Prediction](output\seg\ablation_study\seg_pred_idx_100_numpts_100_acc_0.94.gif)
+
+Chair # 2
+
+Classification : GT = 0, Prediction = 0
+
+Segmentation accuracy = 0.99
+
+![Chair #2 GT](output\seg\ablation_study\seg_gt_idx_50_numpts_100.gif) ![Chair #2 Prediction](output\seg\ablation_study\seg_pred_idx_50_numpts_100_acc_0.99.gif)
+
+Procedure and Interpretation
+--------------------------------------------------------------
+
+**Procedure**
+
+Rotation of the Pointclouds : A rotation matrix has been created which represents a constant ROTATION_ANGLE degrees of rotation about the Z axis. This is used to transform all the pointclouds in the dataset by doing a simple matrix multiplication.
+
+Variation of Number of Points : This is done by altering the args parameter num_points according to the necessary number of points. Essentially it controls the number of points being sampled from each point cloud in the dataset.
+
+**Interpretation**
+
+One can clearly observe that the rotation of pointclouds impacts the classification and segmentation test accuracy much more drastically when compared to varying the number of points sampled.
+One can explain this by taking example of the segmentation model predictions in the case of 90 degree rotations. It is very apparent that the model has learnt a vertical bias, which helps it learn the prior as to which part of the chair occurs where.
+So when a drastic rotation is applied to the input pointcloud, the verticality of the canonical pose is broken and hence the model fails terribly. Whereas in the case of reducing the number of points, one can see that there are enough points in both of the chairs visualized in both the 1000 points and the 100 points case,
+which is enough for the model to make robust predictions.
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js?" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
+

@@ -1,0 +1,8 @@
+Overall acc in OG state = 0.9538
+Overall acc after rotation by 180 degrees and OG points = 0.4669
+Overall acc after rotation by 90 degrees and OG points = 0.2329
+Overall acc after rotation by 45 degrees and OG points = 0.6212
+Overall acc after 5000 pts = 0.9507
+Overall acc after 1000 pts = 0.9496
+Overall acc after 100 pts = 0.9265
+Overall acc after 10 pts = 0.6139
