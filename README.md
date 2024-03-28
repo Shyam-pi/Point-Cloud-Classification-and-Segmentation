@@ -13,7 +13,8 @@ Download zip file (~2GB) from https://drive.google.com/file/d/1wXOgwM_rrEYJfelzu
 
 The following PointNet architecture is used as the base model for both these models:
 
-![image](https://github.com/Shyam-pi/Point-Cloud-Classification-and-Segmentation/assets/57116285/f3edf0e8-03dc-4750-bb15-5e9ac9d94af1)
+![image](https://github.com/Shyam-pi/Point-Cloud-Classification-and-Segmentation/assets/57116285/94218436-a3c1-436a-9032-732221301ed4)
+
 
 ## 1. Classification Model
 Implement the classification model in `models.py`.
