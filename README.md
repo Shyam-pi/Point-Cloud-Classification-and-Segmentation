@@ -1,5 +1,8 @@
 # Point-Cloud-Classification-and-Segmentation
 
+![seg_gt_idx_100_numpts_10000](https://github.com/Shyam-pi/Point-Cloud-Classification-and-Segmentation/assets/57116285/167f68c0-06c0-484c-b6f9-abc1cc5ea19b)
+
+
 **Note**:  I completed this project as a part of the course CMSC848F - 3D Vision, Fall 2023, at the University of Maryland. The original tasks and description can be found at https://github.com/848f-3DVision/assignment4 
 
 **Goals**: In this project we implement a PointNet based architecture for classification and segmentation with point clouds, sections 1 and 2 focus on implementing, training and testing models. Section 3 is about quantitatively analyzing the model's robustness.
